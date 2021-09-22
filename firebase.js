@@ -1,17 +1,17 @@
-import firebase from "./firebase";
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCTw8WFGONpznvfhhd-Di2rREFWlFZ4wi8",
+  apiKey: process.env.API_KEY,
   authDomain: "googdoc-3a298.firebaseapp.com",
   projectId: "googdoc-3a298",
   storageBucket: "googdoc-3a298.appspot.com",
   messagingSenderId: "943894319691",
-  appId: "1:943894319691:web:4da9646fbbda1d9a62f3ce",
+  appId: process.env.APP_ID,
 };
+const app = !firebase.apps.length
+  ? firebase.initializeApp(firebaseConfig)
+  : firebase.app();
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const db = app.firestore();
 
 export { db };
